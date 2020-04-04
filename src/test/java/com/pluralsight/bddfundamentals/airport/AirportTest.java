@@ -1,6 +1,7 @@
 package com.pluralsight.bddfundamentals.airport;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,7 @@ public class AirportTest {
     private Flight economyFlight;
     private Flight businessFlight;
 
+    @DisplayName("Given there is an economy flight")
     @Nested
     class EconomyFlightTest{
 
@@ -45,6 +47,7 @@ public class AirportTest {
         }
     }
 
+    @DisplayName("Given there is a business flight")
     @Nested
     class BusinessFlightTest{
 
