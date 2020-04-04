@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AirportTest {
 
     @Test
-    public void testEconomyFlightUsualPassenger() {
+    public void should_add_and_remove_usual_passenger_from_economy_flight() {
         Flight economyFlight = new EconomyFlight("1");
         Passenger mike = new Passenger("Mike", false);
 
@@ -21,7 +21,7 @@ public class AirportTest {
     }
 
     @Test
-    public void testEconomyFlightVipPassenger() {
+    public void should_add_and_not_remove_vip_passenger_from_economy_flight() {
         Flight economyFlight = new EconomyFlight("1");
         Passenger john = new Passenger("John", true);
 
@@ -35,7 +35,7 @@ public class AirportTest {
     }
 
     @Test
-    public void testBusinessFlightUsualPassenger() {
+    public void should_not_add_usual_passenger_to_business_flight() {
         Flight businessFlight = new BusinessFlight("2");
 
         Passenger mike = new Passenger("Mike", false);
@@ -48,7 +48,7 @@ public class AirportTest {
     }
 
     @Test
-    public void testBusinessFlightVipPassenger() {
+    public void should_add_and_not_remove_vip_passenger_from_business_flight() {
         Flight businessFlight = new BusinessFlight("2");
 
         Passenger john = new Passenger("John", true);
