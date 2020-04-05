@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AirportTest {
@@ -19,21 +20,28 @@ public class AirportTest {
 
         @BeforeEach
         void setUp(){
+
             economyFlight = new EconomyFlight("1");
             mike = new Passenger("Mike", false);
         }
+        @Nested
+        @DisplayName("When we have a usual passenger")
+        class UsualPassenger{
 
-        @Test
-        public void should_add_and_remove_usual_passenger() {
-//            Passenger mike = new Passenger("Mike", false);
+            @Test
+            @DisplayName("Then you can add and remove him from an economy flight")
+            public void testAddAndRemove() {
 
-            assertEquals("1", economyFlight.getId());
-            assertEquals(true, economyFlight.addPassenger(mike));
-            assertEquals(1, economyFlight.getPassengersList().size());
-            assertEquals("Mike", economyFlight.getPassengersList().get(0).getName());
+                assertAll("Verify all conditions for a usual passenger in an economy fight",
 
-            assertEquals(true, economyFlight.removePassenger(mike));
-            assertEquals(0, economyFlight.getPassengersList().size());
+                        () -> assertEquals("1", economyFlight.getId()),
+                        () -> assertEquals(true, economyFlight.addPassenger(mike)),
+                        () -> assertEquals(1, economyFlight.getPassengersList().size()),
+                        () -> assertEquals("Mike", economyFlight.getPassengersList().get(0).getName()),
+                        () -> assertEquals(true, economyFlight.removePassenger(mike)),
+                        () -> assertEquals(0, economyFlight.getPassengersList().size())
+                );
+            }
         }
 
         @Test
