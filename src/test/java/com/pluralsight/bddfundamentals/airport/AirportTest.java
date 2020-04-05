@@ -24,7 +24,7 @@ public class AirportTest {
 
             economyFlight = new EconomyFlight("1");
             mike = new Passenger("Mike", false);
-            john = new Passenger("Mike", true);
+            john = new Passenger("John", true);
         }
         @Nested
         @DisplayName("When we have a usual passenger")
@@ -48,7 +48,6 @@ public class AirportTest {
 
         @Test
         public void should_add_and_not_remove_vip_passenger() {
-//            Passenger john = new Passenger("John", true);
 
             assertEquals("1", economyFlight.getId());
             assertEquals(true, economyFlight.addPassenger(john));
