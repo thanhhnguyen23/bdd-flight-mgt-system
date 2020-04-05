@@ -96,18 +96,24 @@ public class AirportTest {
                 );
             }
         }
+        @Nested
+        @DisplayName("When we have a VIP passenger")
+        class VipPassenger{
 
-        @Test
-        public void should_add_and_not_remove_vip_passenger() {
+            @Test
+            @DisplayName("Then we can add but cannot remove him from a business flight")
+            public void testAddAndRemove() {
 
-//            Passenger john = new Passenger("John", true);
+                assertAll("Verify all conditions for a VIP passenger in a business flight",
+                        () -> assertEquals(true, businessFlight.addPassenger(john)),
+                        () -> assertEquals(1, businessFlight.getPassengersList().size()),
+                        () -> assertEquals(false, businessFlight.removePassenger(john)),
+                        () -> assertEquals(1, businessFlight.getPassengersList().size())
+                );
 
-            assertEquals(true, businessFlight.addPassenger(john));
-            assertEquals(1, businessFlight.getPassengersList().size());
-            assertEquals(false, businessFlight.removePassenger(john));
-            assertEquals(1, businessFlight.getPassengersList().size());
-
+            }
         }
+
     }
 
 }
