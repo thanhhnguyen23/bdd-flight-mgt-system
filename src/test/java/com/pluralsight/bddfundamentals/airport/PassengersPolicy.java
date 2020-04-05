@@ -1,5 +1,6 @@
 package com.pluralsight.bddfundamentals.airport;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,10 +21,29 @@ public class PassengersPolicy {
         economyFlight = new EconomyFlight("1");
     }
 
+    @Given("there is a business flight")
+    public void thereIsABusinessFlight() {
+        businessFlight = new BusinessFlight("2");
+    }
+
+    @Given("there is a premium flight")
+    public void thereIsAPremiumFlight() {
+        premiumFlight = new PremiumFlight("3");
+    }
+
+    //--------------------------------------------------------------------------------
+
     @When("we have a usual passenger")
     public void weHaveAUsualPassenger() {
         mike = new Passenger("Mike", false);
     }
+
+    @When("we have a VIP passenger")
+    public void weHaveAVIPPassenger() {
+        john = new Passenger("John", true);
+    }
+
+    //--------------------------------------------------------------------------------
 
     @Then("you can add and remove him from an economy flight")
     public void youCanAddAndRemoveHimFromAnEconomyFlight() {
@@ -36,17 +56,6 @@ public class PassengersPolicy {
                 () -> assertEquals(true, economyFlight.removePassenger(mike)),
                 () -> assertEquals(0, economyFlight.getPassengersList().size())
         );
-    }
-
-    //--------------------------------------------------------------------------------
-    @Given("there is an business flight")
-    public void thereIsAnBusinessFlight() {
-        businessFlight = new BusinessFlight("2");
-    }
-
-    @When("we have a VIP passenger")
-    public void weHaveAVIPPassenger() {
-        john = new Passenger("John", true);
     }
 
     @Then("you can add him but cannot remove him from an economy flight")
@@ -63,10 +72,6 @@ public class PassengersPolicy {
     }
 
     //--------------------------------------------------------------------------------
-    @Given("there is a business flight")
-    public void thereIsABusinessFlight() {
-        businessFlight = new BusinessFlight("2");
-    }
 
     @Then("you cannot add or remove him from a business flight")
     public void youCannotAddOrRemoveHimFromABusinessFlight() {
@@ -89,10 +94,6 @@ public class PassengersPolicy {
     }
 
     //--------------------------------------------------------------------------------
-    @Given("there is a premium flight")
-    public void thereIsAPremiumFlight() {
-        premiumFlight = new PremiumFlight("3");
-    }
 
     @Then("you cannot add or remove him from a premium flight")
     public void youCannotAddOrRemoveHimFromAPremiumFlight() {
@@ -112,5 +113,11 @@ public class PassengersPolicy {
                 () -> assertEquals(true, premiumFlight.removePassenger(john)),
                 () -> assertEquals(0, premiumFlight.getPassengersList().size())
         );
+    }
+
+    //--------------------------------------------------------------------------------
+
+    @And("you cannot add a usual passenger to an economy flight more than once")
+    public void youCannotAddAUsualPassengerToAnEconomyFlightMoreThanOnce() {
     }
 }
