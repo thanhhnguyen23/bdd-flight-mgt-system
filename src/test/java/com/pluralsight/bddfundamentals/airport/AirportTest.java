@@ -78,16 +78,21 @@ public class AirportTest {
             mike = new Passenger("Mike", false);
         }
 
-        @Test
-        public void should_not_add_usual_passenger() {
+        @Nested
+        @DisplayName("When we have a usual passenger")
+        class UsualPassenger {
 
-//            Passenger mike = new Passenger("Mike", false);
+            @Test
+            @DisplayName("Then we cannot add or remove him from a business flight")
+            public void testAddAndRemove() {
 
-            assertEquals(false, businessFlight.addPassenger(mike));
-            assertEquals(0, businessFlight.getPassengersList().size());
-            assertEquals(false, businessFlight.removePassenger(mike));
-            assertEquals(0, businessFlight.getPassengersList().size());
-
+                assertAll("Verify all conditions for a usual passenger in business flight",
+                        () -> assertEquals(false, businessFlight.addPassenger(mike)),
+                        () -> assertEquals(0, businessFlight.getPassengersList().size()),
+                        () -> assertEquals(false, businessFlight.removePassenger(mike)),
+                        () -> assertEquals(0, businessFlight.getPassengersList().size())
+                );
+            }
         }
 
         @Test
