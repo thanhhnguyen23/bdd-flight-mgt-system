@@ -70,15 +70,18 @@ public class AirportTest {
     @Nested
     class BusinessFlightTest{
 
+        private Passenger mike;
+
         @BeforeEach
         void setUp(){
             businessFlight = new BusinessFlight("2");
+            mike = new Passenger("Mike", false);
         }
 
         @Test
         public void should_not_add_usual_passenger() {
 
-            Passenger mike = new Passenger("Mike", false);
+//            Passenger mike = new Passenger("Mike", false);
 
             assertEquals(false, businessFlight.addPassenger(mike));
             assertEquals(0, businessFlight.getPassengersList().size());
