@@ -15,14 +15,17 @@ public class AirportTest {
     @Nested
     class EconomyFlightTest{
 
+        private Passenger mike;
+
         @BeforeEach
         void setUp(){
             economyFlight = new EconomyFlight("1");
+            mike = new Passenger("Mike", false);
         }
 
         @Test
         public void should_add_and_remove_usual_passenger() {
-            Passenger mike = new Passenger("Mike", false);
+//            Passenger mike = new Passenger("Mike", false);
 
             assertEquals("1", economyFlight.getId());
             assertEquals(true, economyFlight.addPassenger(mike));
