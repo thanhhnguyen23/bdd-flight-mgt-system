@@ -5,8 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PassengersPolicy {
 
@@ -119,5 +118,15 @@ public class PassengersPolicy {
 
     @And("you cannot add a usual passenger to an economy flight more than once")
     public void youCannotAddAUsualPassengerToAnEconomyFlightMoreThanOnce() {
+
+        for(int i = 0; i < 10; i++){
+            economyFlight.addPassenger(mike);
+        }
+
+        assertAll("Verify a usual passenger can be added to an economy flight only once",
+                () -> assertEquals(1, economyFlight.getPassengersList().size()),
+                () -> assertTrue(economyFlight.getPassengersList().contains(mike)),
+                () -> assertTrue(economyFlight.getPassengersList().get(0).getName().equals("Mike"))
+        );
     }
 }
