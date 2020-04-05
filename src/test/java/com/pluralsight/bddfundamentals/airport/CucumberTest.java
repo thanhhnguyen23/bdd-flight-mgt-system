@@ -13,7 +13,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         snippets = SnippetType.CAMELCASE,
-        features = "classpath:features")
+        features = "classpath:features",
+        strict = true
+        )
 public class CucumberTest {
         /**
          * This class should be empty, step definitions should be in separate classes.

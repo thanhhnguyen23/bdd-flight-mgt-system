@@ -34,7 +34,7 @@ public class AirportTest {
             @DisplayName("Then you can add and remove him from an economy flight")
             public void testAddAndRemove() {
 
-                assertAll("Verify all conditions for a usual passenger in an economy fight",
+                assertAll("Verify all conditions for a usual passenger in an economy flight",
 
                         () -> assertEquals("1", economyFlight.getId()),
                         () -> assertEquals(true, economyFlight.addPassenger(mike)),
