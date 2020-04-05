@@ -71,11 +71,13 @@ public class AirportTest {
     class BusinessFlightTest{
 
         private Passenger mike;
+        private Passenger john;
 
         @BeforeEach
         void setUp(){
             businessFlight = new BusinessFlight("2");
             mike = new Passenger("Mike", false);
+            john = new Passenger("John", true);
         }
 
         @Nested
@@ -98,7 +100,7 @@ public class AirportTest {
         @Test
         public void should_add_and_not_remove_vip_passenger() {
 
-            Passenger john = new Passenger("John", true);
+//            Passenger john = new Passenger("John", true);
 
             assertEquals(true, businessFlight.addPassenger(john));
             assertEquals(1, businessFlight.getPassengersList().size());
