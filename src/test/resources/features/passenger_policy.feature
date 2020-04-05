@@ -21,3 +21,14 @@ Feature: Passengers Policy
     Given there is an business flight
     When we have a VIP passenger
     Then you can add him but cannot remove him from a business flight
+
+  Scenario: Premium flight, usual passenger
+    Given there is a premium flight
+    When we have a usual passenger
+    Then you cannot add or remove him from a premium flight
+
+  Scenario: Premium flight, VIP passenger
+    Given there is a premium flight
+    When we have a VIP passenger
+    Then you add or remove him from a premium flight
+
