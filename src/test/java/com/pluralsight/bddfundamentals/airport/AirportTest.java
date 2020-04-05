@@ -46,16 +46,23 @@ public class AirportTest {
             }
         }
 
-        @Test
-        public void should_add_and_not_remove_vip_passenger() {
+        @Nested
+        @DisplayName("When we have a VIP passenger")
+        class VipPassenger{
 
-            assertEquals("1", economyFlight.getId());
-            assertEquals(true, economyFlight.addPassenger(john));
-            assertEquals(1, economyFlight.getPassengersList().size());
-            assertEquals("John", economyFlight.getPassengersList().get(0).getName());
+            @Test
+            @DisplayName("Then you can add but cannot remove him in an economy flight")
+            public void testAddAndRemove() {
 
-            assertEquals(false, economyFlight.removePassenger(john));
-            assertEquals(1, economyFlight.getPassengersList().size());
+                assertAll("Verify all conditions for a VIP passenger in an economy flight",
+                        () -> assertEquals("1", economyFlight.getId()),
+                        () -> assertEquals(true, economyFlight.addPassenger(john)),
+                        () -> assertEquals(1, economyFlight.getPassengersList().size()),
+                        () -> assertEquals("John", economyFlight.getPassengersList().get(0).getName()),
+                        () -> assertEquals(false, economyFlight.removePassenger(john)),
+                        () -> assertEquals(1, economyFlight.getPassengersList().size())
+                );
+            }
         }
     }
 
