@@ -122,7 +122,6 @@ public class PassengersPolicy {
 
     @And("you cannot add a usual passenger to an economy flight more than once")
     public void youCannotAddAUsualPassengerToAnEconomyFlightMoreThanOnce() {
-
         for(int i = 0; i < 10; i++){
             economyFlight.addPassenger(mike);
         }
@@ -131,6 +130,46 @@ public class PassengersPolicy {
                 () -> assertEquals(1, economyFlight.getPassengerSet().size()),
                 () -> assertTrue(economyFlight.getPassengerSet().contains(mike)),
                 () -> assertTrue(new ArrayList<>(economyFlight.getPassengerSet()).get(0).getName().equals("Mike"))
+        );
+    }
+
+    @And("you cannot add a VIP passenger to an economy flight more than once")
+    public void youCannotAddAVIPPassengerToAnEconomyFlightMoreThanOnce() {
+        for(int i = 0; i < 10; i++){
+            economyFlight.addPassenger(john);
+        }
+
+        assertAll("Verify a VIP passenger can be added to an economy flight once",
+                () -> assertEquals(1, economyFlight.getPassengerSet().size()),
+                () -> assertTrue(economyFlight.getPassengerSet().contains(john)),
+                () -> assertTrue(new ArrayList<>(economyFlight.getPassengerSet()).get(0).getName().equals("John"))
+        );
+
+    }
+
+    @And("you cannot add a VIP passenger to a business flight more than once")
+    public void youCannotAddAVIPPassengerToABusinessFlightMoreThanOnce() {
+        for(int i = 0; i < 10; i ++){
+            businessFlight.addPassenger(john);
+        }
+
+        assertAll("Verify a VIP passenger can be added to a business flight once",
+                () -> assertEquals(1, businessFlight.getPassengerSet().size()),
+                () -> assertTrue(businessFlight.getPassengerSet().contains(john)),
+                () -> assertTrue(new ArrayList<>(businessFlight.getPassengerSet()).get(0).getName().equals("John"))
+        );
+    }
+
+    @And("you cannot add a VIP passenger to a premium flight more than once")
+    public void youCannotAddAVIPPassengerToAPremiumFlightMoreThanOnce() {
+        for(int i = 0; i < 10; i ++){
+            premiumFlight.addPassenger(john);
+        }
+
+        assertAll("Verify a VIP passenger can be added to a premium flight once",
+                () -> assertEquals(1, premiumFlight.getPassengerSet().size()),
+                () -> assertTrue(premiumFlight.getPassengerSet().contains(john)),
+                () -> assertTrue(new ArrayList<>(premiumFlight.getPassengerSet()).get(0).getName().equals("John"))
         );
     }
 }
