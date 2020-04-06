@@ -6,7 +6,6 @@ Feature: Passengers Policy
     Given there is an economy flight
     When we have a usual passenger
     Then you can add and remove him from an economy flight
-    And you cannot add a usual passenger to an economy flight more than once
 
   Scenario: Economy flight, VIP passenger
     Given there is an economy flight
